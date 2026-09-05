@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import { catchAsync } from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
@@ -8,12 +8,11 @@ import {
   IPresignThumbnailUploadPayload,
   IUpdateAssessmentPayload,
 } from './evaluator.interfaces';
-import { EvaluatorServices } from './evaluator.services';
-import { strict } from 'node:assert';
+import { evaluatorServices } from './evaluator.services';
 
 const presignThumbnailUpload = catchAsync(
   async (req: Request, res: Response) => {
-    const result = await EvaluatorServices.presignThumbnailUpload(
+    const result = await evaluatorServices.presignThumbnailUpload(
       req.user!.id,
       req.body as IPresignThumbnailUploadPayload,
     );
@@ -28,7 +27,7 @@ const presignThumbnailUpload = catchAsync(
 );
 
 const createAssessment = catchAsync(async (req: Request, res: Response) => {
-  const assessment = await EvaluatorServices.createAssessmentInDB(
+  const assessment = await evaluatorServices.createAssessmentInDB(
     req.user!.id,
     req.body as ICreateAssessmentPayload,
   );
@@ -44,7 +43,7 @@ const createAssessment = catchAsync(async (req: Request, res: Response) => {
 const getMyCreatedAssessments = catchAsync(
   async (req: Request, res: Response) => {
     const { assessments, meta } =
-      await EvaluatorServices.getMyCreatedAssessments(
+      await evaluatorServices.getMyCreatedAssessments(
         req.user!.id,
         req.query as unknown as IGetMyAssessmentsQuery,
       );
@@ -61,7 +60,7 @@ const getMyCreatedAssessments = catchAsync(
 
 const getSingleAssessmentByIdForEvaluatorOrAdmin = catchAsync(
   async (req: Request, res: Response) => {
-    const result = await EvaluatorServices.getSingleAssessmentById(
+    const result = await evaluatorServices.getSingleAssessmentById(
       req.user!.id,
       req.params.assessmentId as string,
     );
@@ -79,7 +78,7 @@ const updateSingleAssessmentById = catchAsync(
   async (req: Request, res: Response) => {
     const providerId = req.user?.id as string;
     const assessmentId = req.params.assessmentId as string;
-    const assessment = await EvaluatorServices.updateSingleAssessmentById(
+    const assessment = await evaluatorServices.updateSingleAssessmentById(
       providerId,
       assessmentId,
       req.body as IUpdateAssessmentPayload,
@@ -98,7 +97,7 @@ const deleteSingleAssessmentById = catchAsync(
   async (req: Request, res: Response) => {
     const providerId = req.user?.id as string;
     const assessmentId = req.params.assessmentId as string;
-    await EvaluatorServices.deleteSingleAssessmentById(
+    await evaluatorServices.deleteSingleAssessmentById(
       providerId,
       assessmentId,
     );
@@ -112,7 +111,7 @@ const deleteSingleAssessmentById = catchAsync(
   },
 );
 
-export const EvaluatorControllers = {
+export const evaluatorControllers = {
   presignThumbnailUpload,
   createAssessment,
   getMyCreatedAssessments,

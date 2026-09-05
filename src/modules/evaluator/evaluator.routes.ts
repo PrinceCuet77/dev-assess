@@ -3,7 +3,7 @@ import { Router } from 'express';
 import { Role } from '../../../generated/prisma/client';
 import { auth } from '../../middlewares/auth';
 import { validate } from '../../middlewares/validator';
-import { EvaluatorControllers } from './evaluator.controllers';
+import { evaluatorControllers } from './evaluator.controllers';
 import {
   createAssessmentSchema,
   getAssessmentByIdParamSchema,
@@ -18,28 +18,28 @@ router.post(
   '/assessment/thumbnail/presign',
   auth(Role.EVALUATOR),
   validate(presignThumbnailUploadSchema),
-  EvaluatorControllers.presignThumbnailUpload,
+  evaluatorControllers.presignThumbnailUpload,
 );
 
 router.post(
   '/assessment',
   auth(Role.EVALUATOR),
   validate(createAssessmentSchema),
-  EvaluatorControllers.createAssessment,
+  evaluatorControllers.createAssessment,
 );
 
 router.get(
   '/assessments',
   auth(Role.EVALUATOR),
   validate(getMyAssessmentsSchema, 'query'),
-  EvaluatorControllers.getMyCreatedAssessments,
+  evaluatorControllers.getMyCreatedAssessments,
 );
 
 router.get(
   '/assessments/:assessmentId',
   auth(Role.EVALUATOR, Role.ADMIN),
   validate(getAssessmentByIdParamSchema, 'params'),
-  EvaluatorControllers.getSingleAssessmentByIdForEvaluatorOrAdmin,
+  evaluatorControllers.getSingleAssessmentByIdForEvaluatorOrAdmin,
 );
 
 router.patch(
@@ -47,14 +47,14 @@ router.patch(
   auth(Role.EVALUATOR),
   validate(getAssessmentByIdParamSchema, 'params'),
   validate(updateAssessmentSchema),
-  EvaluatorControllers.updateSingleAssessmentById,
+  evaluatorControllers.updateSingleAssessmentById,
 );
 
 router.delete(
   '/assessments/:assessmentId',
   auth(Role.EVALUATOR),
   validate(getAssessmentByIdParamSchema, 'params'),
-  EvaluatorControllers.deleteSingleAssessmentById,
+  evaluatorControllers.deleteSingleAssessmentById,
 );
 
-export const EvaluatorRoutes = router;
+export const evaluatorRoutes = router;

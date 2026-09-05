@@ -279,7 +279,7 @@ const deleteSingleAssessmentById = async (
   });
 };
 
-export const EvaluatorServices = {
+export const evaluatorServices = {
   presignThumbnailUpload,
   createAssessmentInDB,
   getMyCreatedAssessments,

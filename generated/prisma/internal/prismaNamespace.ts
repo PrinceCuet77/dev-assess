@@ -1069,7 +1069,6 @@ export const ReviewScalarFieldEnum = {
   comment: 'comment',
   developerId: 'developerId',
   assessmentId: 'assessmentId',
-  isDeleted: 'isDeleted',
   deletedAt: 'deletedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
