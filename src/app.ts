@@ -9,6 +9,7 @@ import passport from 'passport';
 import './config/passport';
 import { evaluatorRoutes } from './modules/evaluator/evaluator.routes';
 import { reviewsRoutes } from './modules/reviews/reviews.routes';
+import { assessmentsRoutes } from './modules/assessments/assessments.routes';
 
 const app: Application = express();
 
@@ -27,6 +28,7 @@ app.use('/api/v1/auth', AuthRoutes);
 app.use('/api/v1/users', UserRoutes);
 app.use('/api/v1/evaluator', evaluatorRoutes);
 app.use('/api/v1/reviews', reviewsRoutes);
+app.use('/api/v1/assessments', assessmentsRoutes);
 
 app.use(notFound);
 

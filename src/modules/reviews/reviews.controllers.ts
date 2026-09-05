@@ -18,7 +18,7 @@ const createReview = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.CREATED,
-    message: 'Review created successfully',
+    message: 'Review is created successfully',
     data: review,
   });
 });
@@ -32,7 +32,7 @@ const getMyReviews = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Reviews retrieved successfully',
+    message: 'Reviews is retrieved successfully',
     data: reviews,
     meta,
   });
@@ -62,7 +62,7 @@ const updateReview = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Review updated successfully',
+    message: 'Review is updated successfully',
     data: review,
   });
 });
@@ -76,7 +76,7 @@ const deleteReview = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Review deleted successfully',
+    message: 'Review is deleted successfully',
     data: null,
   });
 });
